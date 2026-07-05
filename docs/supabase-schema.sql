@@ -1,0 +1,22 @@
+-- ============================================================
+-- İstanbul Boğaz Avcılığı V3 — Supabase MVP Şeması
+-- ============================================================
+--
+-- Bu dosya geriye dönük uyumluluk için korunur.
+-- Yeni kurulumlar için modüler dosyaları sırayla çalıştırın:
+--
+--   1. docs/supabase/01_enums_and_tables.sql
+--   2. docs/supabase/02_functions_and_triggers.sql
+--   3. docs/supabase/03_rls.sql
+--   4. docs/supabase/04_storage.sql
+--   5. docs/supabase/05_seed.sql        (isteğe bağlı)
+--   6. docs/supabase/06_realtime.sql    (Realtime yayınları)
+--
+-- Supabase Dashboard > SQL Editor'da her dosyayı sırayla yapıştırıp çalıştırın.
+--
+-- Kurulum sonrası:
+--   - Authentication > Providers > Google OAuth'u etkinleştirin (Adım 2)
+--   - .env.local dosyasına VITE_SUPABASE_URL ve VITE_SUPABASE_ANON_KEY ekleyin
+--   - İlk admin: profiles tablosunda role = 'admin' olarak güncelleyin
+--
+-- ============================================================

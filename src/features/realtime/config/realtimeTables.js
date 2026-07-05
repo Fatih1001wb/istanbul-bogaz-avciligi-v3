@@ -1,0 +1,21 @@
+import { TABLES } from '../../../utils/constants'
+
+// Realtime dinlenen tablolar — tek kaynak.
+// Yeni feature eklerken buraya kayıt ekleyin.
+export const REALTIME_TABLES = {
+  PROFILES: TABLES.PROFILES,
+  FISH_SPECIES: TABLES.FISH_SPECIES,
+  REGULATIONS: TABLES.REGULATIONS,
+  FISHING_SPOTS: TABLES.FISHING_SPOTS,
+  COMMUNITY_POSTS: TABLES.COMMUNITY_POSTS,
+  POST_LIKES: TABLES.POST_LIKES,
+  POST_COMMENTS: TABLES.POST_COMMENTS,
+  CHAT_MESSAGES: TABLES.CHAT_MESSAGES,
+}
+
+// Admin panelinden gelen değişikliklerin anında yansıdığı içerik tabloları
+export const ADMIN_SYNCED_TABLES = [
+  REALTIME_TABLES.FISH_SPECIES,
+  REALTIME_TABLES.REGULATIONS,
+  REALTIME_TABLES.FISHING_SPOTS,
+]
