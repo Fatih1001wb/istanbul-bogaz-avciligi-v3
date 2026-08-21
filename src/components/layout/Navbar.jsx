@@ -1,0 +1,82 @@
+import { Link, NavLink, useNavigate } from 'react-router-dom'
+import { NAV_LINKS } from '../../utils/constants'
+import { useAuth } from '../../features/auth/hooks/useAuth'
+import MaviRotaWordmark from '../brand/MaviRotaWordmark'
+import ThemeToggle from '../ui/ThemeToggle'
+import Button from '../ui/Button'
+
+export default function Navbar() {
+  const { isAuthenticated, signOut, profile } = useAuth()
+  const navigate = useNavigate()
+
+  const handleSignOut = async () => {
+    await signOut()
+    navigate('/')
+  }
+
+  const linkClass = ({ isActive }) =>
+    `rounded-lg px-3 py-2 text-sm font-medium transition ${
+      isActive
+        ? 'bg-brand-500/15 text-brand-300'
+        : 'text-slate-400 hover:bg-slate-800/60 hover:text-slate-200'
+    }`
+
+  return (
+    <header className="sticky top-0 z-40 border-b border-slate-800/80 bg-mavirota-deep/90 backdrop-blur-lg">
+      <nav className="container-page flex h-16 items-center justify-between">
+        <Link to="/" className="shrink-0">
+          <MaviRotaWordmark />
+        </Link>
+
+        <div className="hidden items-center gap-1 lg:flex">
+          {NAV_LINKS.map((link) => (
+            <NavLink key={link.to} to={link.to} className={linkClass} end={link.to === '/'}>
+              {link.label}
+            </NavLink>
+          ))}
+        </div>
+
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          {isAuthenticated ? (
+            <div className="hidden items-center gap-2 sm:flex">
+              <Link
+                to="/profil"
+                className="text-sm font-medium text-slate-300 hover:text-brand-300"
+              >
+                {profile?.username || 'Profil'}
+              </Link>
+              <Button size="sm" variant="outline" onClick={handleSignOut}>
+                Çıkış
+              </Button>
+            </div>
+          ) : (
+            <div className="hidden items-center gap-2 sm:flex">
+              <Link to="/giris">
+                <Button size="sm" variant="ghost">
+                  Giriş
+                </Button>
+              </Link>
+              <Link to="/kayit">
+                <Button size="sm">Kayıt Ol</Button>
+              </Link>
+            </div>
+          )}
+          <div className="flex items-center gap-2 lg:hidden">
+            {isAuthenticated ? (
+              <Link to="/profil" className="text-sm font-medium text-slate-300">
+                {profile?.username?.[0]?.toUpperCase() || 'P'}
+              </Link>
+            ) : (
+              <Link to="/giris">
+                <Button size="sm" variant="ghost">
+                  Giriş
+                </Button>
+              </Link>
+            )}
+          </div>
+        </div>
+      </nav>
+    </header>
+  )
+}
